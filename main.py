@@ -1,9 +1,10 @@
 from src.components.data_ingestion import DataIngestion
 from src.components.data_validation import DataValidation
+from src.components.data_transformation import DataTransformation
 from src.logger import logging
 from src.exception import NetworkSecurityException
-from src.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig
-from src.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact
+from src.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig, DataValidationConfig, DataTranformationConfig
+from src.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact, DataTransformationArtifact
 import sys 
 
 if __name__ =="__main__":
@@ -20,6 +21,14 @@ if __name__ =="__main__":
         data_validation = DataValidation(data_validation_config,data_ingestion_artifact)
         data_validation_artifact:DataValidationArtifact = data_validation.initiate_data_validation() 
         logging.info("Data Validation completed.")
-        print(data_validation_artifact)
+        
+        
+        logging.info("Data Transformation Initialised.")
+        data_transformation_config = DataTranformationConfig(training_pipeline_config)
+        data_transformation = DataTransformation(data_transformation_config,data_validation_artifact)
+        data_transformation_artifact : DataTransformationArtifact = data_transformation.initialise_data_transformation() 
+        logging.info("Data Transformation completed.")
+        
+        print(data_ingestion_artifact)
     except Exception as e :
         raise NetworkSecurityException(e,sys)
