@@ -218,7 +218,8 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-
+Artifacts/
 requirements.txt
 description_of_project.txt
 description_of_project.ipynb
+logs/
