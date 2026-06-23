@@ -35,6 +35,14 @@ def save_numpy_array(array : np.array, path:str):
             np.save(file, array)
     except Exception as e:
         raise NetworkSecurityException(e,sys)
+    
+    
+def load_numpy_array(path:str):
+    try:
+        with open(path,"rb") as file:
+            return np.load(file)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
 
 
 def save_object(path: str, obj):
@@ -45,3 +53,15 @@ def save_object(path: str, obj):
             pickle.dump(obj, file)
     except Exception as e:
         raise NetworkSecurityException(e,sys)
+    
+    
+def load_object(path: str):
+    try:
+        with open(path,"rb") as file:
+          return  pickle.load(file)
+    except Exception as e:
+        raise NetworkSecurityException(e,sys)
+    
+
+    
+

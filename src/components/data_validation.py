@@ -6,7 +6,7 @@ import pandas as pd
 
 from src.logger import logging
 from src.exception import NetworkSecurityException
-from src.utils import read_yaml_file, write_yaml_file
+from src.utils.main_utils.utils import read_yaml_file, write_yaml_file
 from src.entity.config_entity import DataValidationConfig
 from src.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact
 from src.constant.training_pipeline import SCHEMA_FILE_PATH

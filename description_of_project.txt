@@ -1,0 +1,33 @@
+
+
+1. Setup environment, github, gitignore and overall project structure, src notebooks, data, DOckerfile, etc.
+2. Add setup.py file.
+3. Add logging and Exception files.
+
+4. Now the actual project begins:
+
+Data Taking from MongoDB:
+
+## How data comes in MongoDB?
+- ETL Pipelines: (Extract, Transform and Load):
+
+We have csv dataset in local and we do some basic preprocessing like cleaning and transformation to json (eg) and save it to destination like in MongoDB.
+Data can be coming from anywhere, apis, aws, mysql, internal DBs, etc. So, we should know how to handle it.
+
+This Extracting from local and doing transformation and loading to mongodb is done in ETL pipeline.
+
+
+Setup Mongobd Test its connection in the test_data file.
+
+BUild push_data file †o convert csv data to json and push it to mongodb
+
+
+Now comes Data Ingestion pipeline:
+
+DataIngestionCOnfig -> DataIngestionPipeline -> DataIngestionArtifacts 
+                           
+- Added constants in constant folder related to training and ingetsion pipeline and made them accessible through classes in entity folder.
+
+1. Read data from MOngoDB
+2. Create Feature store
+3. Split Train and test and save it to ingested folder.

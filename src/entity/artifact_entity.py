@@ -21,3 +21,16 @@ class DataTransformationArtifact:
     transformed_train_npy_path: str
     transformed_test_npy_path: str
     transformed_object_file_path: str
+    
+    
+@dataclass
+class ClassificationMetricArtifact:
+    f1_score: float
+    precision_score: float
+    recall_score: float
+    
+@dataclass
+class ModelTrainerArtfiact:
+    trained_model_file_path :str
+    trained_metric_artifact: ClassificationMetricArtifact
+    test_metric_artifact:ClassificationMetricArtifact

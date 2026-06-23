@@ -9,7 +9,7 @@ from sklearn.pipeline import Pipeline
 
 from src.exception import NetworkSecurityException
 from src.logger import logging
-from src.utils import save_numpy_array , save_object
+from src.utils.main_utils.utils import save_numpy_array , save_object
 from src.entity.config_entity import DataTranformationConfig
 from src.entity.artifact_entity import DataValidationArtifact, DataTransformationArtifact
 from src.constant.training_pipeline import TARGET_COLUMN, DATA_TRANSFORMATION_IMPUTER_PARAMS
