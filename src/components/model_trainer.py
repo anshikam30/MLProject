@@ -22,6 +22,10 @@ from src.entity.artifact_entity import ModelTrainerArtfiact, DataTransformationA
 from src.constant.training_pipeline import TARGET_COLUMN
 
 import mlflow
+import dagshub
+dagshub.init(repo_owner='anshikamodi3001', repo_name='MLProject', mlflow=True)
+
+
 
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig, data_transformation_artifact: DataTransformationArtifact):
