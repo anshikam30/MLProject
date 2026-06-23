@@ -21,7 +21,7 @@ from src.entity.config_entity import ModelTrainerConfig
 from src.entity.artifact_entity import ModelTrainerArtfiact, DataTransformationArtifact
 from src.constant.training_pipeline import TARGET_COLUMN
 
-
+import mlflow
 
 class ModelTrainer:
     def __init__(self, model_trainer_config: ModelTrainerConfig, data_transformation_artifact: DataTransformationArtifact):
@@ -53,7 +53,18 @@ class ModelTrainer:
             return report 
         except Exception as e:
             raise NetworkSecurityException(e,sys)
-        
+    
+    def track_mlflow(self,model, classification_metric):
+        with mlflow.start_run():
+            f1_score = classification_metric.f1_score
+            precision = classification_metric.precision_score
+            recall = classification_metric.recall_score
+            
+            mlflow.log_metric("f1_score", f1_score)
+            mlflow.log_metric("precision", precision)
+            mlflow.log_metric("recall", recall)
+            mlflow.sklearn.log_model(model, "model")
+         
     def train_model(self, x_train, y_train, x_test, y_test):
         
         models= {
@@ -116,8 +127,8 @@ class ModelTrainer:
         classification_score_train = get_classification_score(true = y_train, predicted=y_train_pred)
         
         ##Track mlflow
-        
-        
+        self.track_mlflow(best_model, classification_score_train)
+        self.track_mlflow(best_model, classification_score_test)
         preprocessor = load_object(path=self.data_transformation_artifact.transformed_object_file_path)
         model_dir_path = os.path.dirname(self.model_trainer_config.model_trainer_trained_file_path)
         os.makedirs(model_dir_path, exist_ok=True)

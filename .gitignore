@@ -221,3 +221,4 @@ __marimo__/
 Artifacts/
 requirements.txt
 logs/
+mlruns/
